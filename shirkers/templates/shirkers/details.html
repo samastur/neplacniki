@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if object %}
+  <h1>{{ object.name }}</h1>
+  <p><strong>Davčna številka:</strong> {{ object.vat_id }}</p>
+  <p>
+    {{ object.street }}, {{ object.postcode}} {{ object.city }}
+  </p>
+  {{ object }}
+  {{ faults }}
+{% else %}
+  <h1>Podjetje s to davčno številko ni med neplačniki.</h1>
+{% endif %}
+{% endblock %}
