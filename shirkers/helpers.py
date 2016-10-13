@@ -24,15 +24,27 @@ class ParseError(Exception):
     pass
 
 
+def parse_xml(content):
+    try:
+        tree = ElementTree.fromstring(content)
+    except:
+        raise ParseError('Could not parse fetched data.')
+    return tree
+
+
 def fetch(url=DATA_URL):
     r = requests.get(url)
     if r.status_code != 200:
         raise FetchError('Problems with fetching data. HTTP code: ' +
                          str(r.status_code))
-    try:
-        tree = ElementTree.fromstring(r.content)
-    except:
-        raise ParseError('Could not parse fetched data.')
+    tree = parse_xml(r.content)
+    return tree
+
+
+def local_fetch(filepath):
+    tree = None
+    with open(filepath, 'r') as f:
+        tree = parse_xml(f.read())
     return tree
 
 

@@ -1,6 +1,12 @@
 <form action="." method="GET">
-  <input id="id_q" name="q" type="search" placeholder="Ime podjetja ali davčna številka" />
+  <input id="id_q" name="q" type="search" placeholder="Ime podjetja ali davčna številka" autofocus />
   <input type="submit" value="Poišči" />
 </form>
 
-{{ matches }}
+{% if companies %}
+<ul>
+  {% for company in companies %}
+  <li><a href="{{ company.get_absolute_url }}">{{ company.name }}</a>
+  {% endfor %}
+</ul>
+{% endif %}

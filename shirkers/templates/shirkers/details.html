@@ -7,8 +7,16 @@
   <p>
     {{ object.street }}, {{ object.postcode}} {{ object.city }}
   </p>
-  {{ object }}
-  {{ faults }}
+  <p>Neplačila v zadnjih 12 mesecih:</p>
+  {% if missed_dates %}
+  <ul>
+  {% for missed in missed_dates %}
+  <li>{{ missed|date:"E Y" }}</li>
+  {% endfor %}
+  </ul>
+  {% else %}
+  <p>Podjetje v zadnjem letu ni bilo na seznamu nepredlagateljev obračunov.</p>
+  {% endif %}
 {% else %}
   <h1>Podjetje s to davčno številko ni med neplačniki.</h1>
 {% endif %}
