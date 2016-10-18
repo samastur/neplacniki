@@ -1,14 +1,12 @@
 {% load staticfiles %}
+{% load assets %}
 <!DOCTYPE html>
 <html lang="sl">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>{% block title %}Neplačniki{% endblock %}</title>
-	<link rel="stylesheet" href="{% static 'pure/base-min.css' %}">
-	<link rel="stylesheet" href="{% static 'pure/forms-min.css' %}">
-	<link rel="stylesheet" href="{% static 'pure/buttons-min.css' %}">
-	<link rel="stylesheet" href="{% static 'jquery-ui.min.css' %}">
+  <link rel="stylesheet" href="{% static "styles.css" %}">
 	<style>
 * {
 	box-sizing: border-box !important;
