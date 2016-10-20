@@ -4,7 +4,7 @@ css_files = [
     'static/jquery-ui.min.css',
     'static/pure/base-min.css',
     'static/pure/forms-min.css',
-    'static/pure/buttons-min.css',
+    'static/custom.css',
 ]
 
 js_files = [

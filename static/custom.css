@@ -1,0 +1,42 @@
+body {
+  background-color: #f2f2f2;
+  color: #000;
+}
+* {
+	box-sizing: border-box !important;
+}
+.content {
+	max-width: 40em;
+	margin: 3em auto;
+}
+input[type="search"] {
+	width: calc(100% - 5em);
+}
+.search_submit {
+  background-color: #ff9600;
+  color: #000;
+	font-family: montserrat,Arial,Helvetica,sans-serif;
+
+	/* From Pure framework */
+	font-size: 100%;
+	padding: .5em 1em;
+	border: 1px solid #999;
+	border: 0 rgba(0,0,0,0);
+	text-decoration: none;
+	border-radius: 2px;
+	display: inline-block;
+	zoom: 1;
+	line-height: normal;
+	white-space: nowrap;
+	vertical-align: middle;
+	text-align: center;
+	cursor: pointer;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+
+	-webkit-appearance: button;
+	cursor: pointer;
+}
