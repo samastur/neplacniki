@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import DetailView, TemplateView
 
 from .models import Company, MissedMonths
+from .helpers import calc_last_month
 
 
 class Home(TemplateView):
@@ -41,13 +42,6 @@ class Home(TemplateView):
         elif len(companies) == 1:
             return HttpResponseRedirect(companies[0].get_absolute_url())
         return self.render_to_response(ctx)
-
-
-def calc_last_month(d):
-    if d.month > 1:
-        return date(d.year, d.month-1, 1)
-    else:
-        return date(d.year-1, 12, 1)
 
 
 def calc_a_year(d):

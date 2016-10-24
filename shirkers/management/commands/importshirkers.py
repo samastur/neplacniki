@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from shirkers.helpers import fetch, parse, FetchError, ParseError
+from shirkers.helpers import fetch, calc_last_month, parse, FetchError, ParseError
 from shirkers.models import Company, MissedMonths
 
 
@@ -40,7 +40,7 @@ Already imported entries will not be imported again.
                 # Add missing date for it
                 MissedMonths.objects.create(
                     company=comp,
-                    missed_date=metadata['ondate'])
+                    missed_date=calc_last_month(metadata['ondate']))
                 '''
                 Company.objects.create(
                     vat_id=company['id'],

@@ -1,3 +1,4 @@
+from datetime import date
 import pendulum
 import requests
 from xml.etree import ElementTree
@@ -22,6 +23,13 @@ class FetchError(Exception):
 
 class ParseError(Exception):
     pass
+
+
+def calc_last_month(d):
+    if d.month > 1:
+        return date(d.year, d.month-1, 1)
+    else:
+        return date(d.year-1, 12, 1)
 
 
 def parse_xml(content):
