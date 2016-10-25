@@ -1,6 +1,33 @@
 {% extends "base.html" %}
 
+{% load staticfiles %}
+
 {% block content %}
   <h1>Nepredlagatelji</h1>
   {% include "shirkers/search.html" %}
+
+  {% if companies %}
+  <ul>
+    {% for company in companies %}
+    <li><a href="{{ company.get_absolute_url }}">{{ company.name }}</a>
+    {% endfor %}
+  </ul>
+  {% else %}
+  {% if question %}
+  <p>Med nepredlagatelji ni podjetja <strong>{{ question }}</strong></p>
+  {% endif %}
+  {% endif %}
+
+  <script type="text/javascript" src="{% static "scripts.js" %}"></script>
+  <script>
+  $( function() {
+    $( "#id_q" ).autocomplete({
+      source: "/?format=json",
+      minLength: 2,
+      select: function( event, ui ) {
+        window.location.href = '/' + ui.item.id + '/';
+      }
+    });
+  } );
+  </script>
 {% endblock %}

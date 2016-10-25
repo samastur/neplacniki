@@ -1,0 +1,26 @@
+{% load staticfiles %}
+<section class="shk-embed-wrap">
+  <style>
+@import url("{% static "embed.css" %}"); 
+  </style>
+  {% include "shirkers/search.html" %}
+  <div class="shk-result"></div>
+  <script>
+$( function() {
+  function fetchCompany(company) {
+    var url = 'http://nepredlagatelji.zen.si/embed/';
+    $.get(url, function (result) {
+
+    });
+  }
+
+  $( "#id_q" ).autocomplete({
+    source: "http://nepredlagatelji.zen.si/?format=json",
+    minLength: 2,
+    select: function( event, ui ) {
+      fetchCompany(ui.item.id);
+    }
+  });
+} );
+  </script>
+</section>

@@ -13,7 +13,6 @@ class Home(TemplateView):
     num_hits = 10
 
     def find_companies(self, query):
-        print query
         try:
             int(query)  # Checks if query is a number
             filtered = Company.objects.filter(
@@ -42,6 +41,10 @@ class Home(TemplateView):
         elif len(companies) == 1:
             return HttpResponseRedirect(companies[0].get_absolute_url())
         return self.render_to_response(ctx)
+
+
+class Embed(TemplateView):
+    template_name = 'shirkers/embed.html'
 
 
 def calc_a_year(d):

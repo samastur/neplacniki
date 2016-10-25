@@ -1,32 +1,6 @@
-{% load staticfiles %}
-<form action="." method="GET" class="pure-form">
-	<fieldset>
-		<input id="id_q" name="term" type="search" placeholder="Ime podjetja ali davčna številka" autofocus />
-		<input type="submit" class="search_submit pure-button pure-button-primary" value="Poišči" />
-	</fieldset>
-</form>
-
-{% if companies %}
-<ul>
-  {% for company in companies %}
-  <li><a href="{{ company.get_absolute_url }}">{{ company.name }}</a>
-  {% endfor %}
-</ul>
-{% else %}
-{% if question %}
-<p>Med nepredlagatelji ni podjetja <strong>{{ question }}</strong></p>
-{% endif %}
-{% endif %}
-
-<script type="text/javascript" src="{% static "scripts.js" %}"></script>
-<script>
-$( function() {
-	$( "#id_q" ).autocomplete({
-		source: "/?format=json",
-		minLength: 2,
-		select: function( event, ui ) {
-			window.location.href = '/' + ui.item.id + '/';
-		}
-	});
-} );
-</script>
+  <form action="." method="GET" class="pure-form">
+    <fieldset>
+      <input id="id_q" name="term" type="search" placeholder="Ime podjetja ali davčna številka" autofocus />
+      <input type="submit" class="search_submit pure-button pure-button-primary" value="Poišči" />
+    </fieldset>
+  </form>

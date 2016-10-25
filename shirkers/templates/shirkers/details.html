@@ -1,25 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% if object %}
-  <h1>{{ object.name }}</h1>
-  <p><strong>Davčna številka:</strong> {{ object.vat_id }}</p>
-  <p>
-    {{ object.street }}, {{ object.postcode}} {{ object.city }}
-  </p>
-  <p>Neplačila v zadnjih 12 mesecih:</p>
-  {% if missed_dates %}
-  <ul>
-  {% for missed in missed_dates %}
-  <li>{{ missed|date:"E Y" }}</li>
-  {% endfor %}
-  </ul>
-  {% else %}
-  <p>Podjetje v zadnjem letu ni bilo na seznamu nepredlagateljev obračunov.</p>
-  {% endif %}
-{% else %}
-  <h1>Podjetje s to davčno številko ni med neplačniki.</h1>
-{% endif %}
-
+  {% include "shirkers/result.html" %}
 	<p><a href="{% url "home" %}">Nazaj na iskanje</a></p>
 {% endblock %}
