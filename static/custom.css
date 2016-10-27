@@ -14,3 +14,18 @@ body {
   color: #000;
 	font-family: montserrat,Arial,Helvetica,sans-serif;
 }
+
+form input[type=search], .pure-form input[type=tel], .pure-form input[type=color], .pure-form select, .pure-form textarea {
+    padding: .5em .6em;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px #ddd;
+    border-radius: 4px;
+    vertical-align: middle;
+    width: calc(100% - 5em);
+    -webkit-appearance: textfield;
+    line-height: normal;
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}

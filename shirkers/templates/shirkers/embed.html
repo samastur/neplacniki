@@ -1,21 +1,24 @@
 {% load staticfiles %}
+{% with BASEURL="http://localhost:8001" %}
 <section class="shk-embed-wrap">
   <style>
-@import url("{% static "embed.css" %}"); 
+@import url("{{ BASEURL }}{% static "embed.css" %}");
   </style>
   {% include "shirkers/search.html" %}
   <div class="shk-result"></div>
   <script>
 $( function() {
+	document.body.classList.add("shirk");
+
   function fetchCompany(company) {
-    var url = 'http://nepredlagatelji.zen.si/embed/';
+		var url = '{{ BASEURL }}{% url "embed" %}' + company;
     $.get(url, function (result) {
 
     });
   }
 
   $( "#id_q" ).autocomplete({
-    source: "http://nepredlagatelji.zen.si/?format=json",
+		source: "{{ BASEURL }}{% url "home" %}?format=json",
     minLength: 2,
     select: function( event, ui ) {
       fetchCompany(ui.item.id);
@@ -24,3 +27,4 @@ $( function() {
 } );
   </script>
 </section>
+{% endwith %}

@@ -10,8 +10,6 @@ css_files = [
 
 embed_css_files = [
     'static/jquery-ui.min.css',
-    'static/pure/base-min.css',
-    'static/pure/forms-min.css',
     'static/fragment.css',
 ]
 
@@ -23,7 +21,7 @@ js_files = [
 embed_js_files = [
     'static/jquery.js',
     'static/jquery-ui.min.js',
-    'static/embed.js',
+    'static/loader.js',
 ]
 
 js = Bundle(*js_files, filters='jsmin', output='static/scripts.js')
