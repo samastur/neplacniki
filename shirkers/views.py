@@ -82,3 +82,7 @@ class CompanyView(DetailView):
             return Company.objects.filter(vat_id=slug).order_by('-id').first()
         except:  # Does not exist =>
             return None
+
+
+class EmbedResult(CompanyView):
+    template_name = 'shirkers/result.html'
