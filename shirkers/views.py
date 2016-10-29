@@ -1,11 +1,18 @@
 from datetime import date
 import json
 
+from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import DetailView, TemplateView
 
 from .models import Company, MissedMonths
 from .helpers import calc_last_month
+
+
+if hasattr(settings, 'STATIC_BASE_URL'):
+    BASEURL = settings.STATIC_BASE_URL
+else:
+    BASEURL = ''
 
 
 class Home(TemplateView):
@@ -46,6 +53,12 @@ class Home(TemplateView):
 class Embed(TemplateView):
     template_name = 'shirkers/embed.html'
 
+    def get_context_data(self, **kwargs):
+        ctx = {
+            'BASEURL': BASEURL
+        }
+        return ctx
+
 
 def calc_a_year(d):
     if d.month == 12:
@@ -62,7 +75,7 @@ class CompanyView(DetailView):
 
     def get_context_data(self, **kwargs):
         ctx = {
-            'object': kwargs.get('object')
+            'object': kwargs.get('object'),
         }
         if ctx['object']:
             prev_month = calc_last_month(date.today())
