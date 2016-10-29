@@ -1,6 +1,8 @@
+.podc-search-form fieldset,
 .podc-embed-wrap fieldset {
 	border: 0 none;
 }
+.podc-search-form input[type="search"],
 .podc-embed-wrap input[type="search"] {
 	width: calc(100% - 6em);
 
@@ -17,6 +19,7 @@
 	font: inherit;
 	margin: 0;
 }
+.podc-search-form .search_submit,
 .podc-embed-wrap .search_submit {
 	background-color: #ff9600;
 	color: #000;

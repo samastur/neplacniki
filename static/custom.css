@@ -15,7 +15,7 @@ body {
 	font-family: montserrat,Arial,Helvetica,sans-serif;
 }
 
-form input[type=search], .pure-form input[type=tel], .pure-form input[type=color], .pure-form select, .pure-form textarea {
+form input[type=search] {
     padding: .5em .6em;
     display: inline-block;
     border: 1px solid #ccc;
