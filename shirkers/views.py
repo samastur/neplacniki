@@ -60,6 +60,10 @@ class Embed(TemplateView):
         return ctx
 
 
+class IFrameEmbed(TemplateView):
+    template_name = 'shirkers/iframe.html'
+
+
 def calc_a_year(d):
     if d.month == 12:
         return date(d.year, 1, 1)
