@@ -12,11 +12,16 @@ $( function() {
   $('.shk-search-form').on('submit', function (e) {
     e.preventDefault();
     e.stopImmediatePropagation();
+
+    fetchCompany(
+      encodeURIComponent(
+        $("#id_q").val()
+      )
+    );
   });
 
   function fetchCompany(company_id) {
 		var url = '{{ BASEURL }}/embed/result/' + company_id + '/';
-    console.log(url);
     $('.shk-result').load(url);
   }
 
@@ -24,7 +29,6 @@ $( function() {
 		source: "{{ BASEURL }}{% url "home" %}?format=json",
     minLength: 2,
     select: function( event, ui ) {
-      console.log(ui.item.id);
       fetchCompany(ui.item.id);
     }
   });

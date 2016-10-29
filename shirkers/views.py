@@ -30,16 +30,16 @@ class Home(TemplateView):
             ctx['question'] = question
             companies = self.find_companies(question)
 
-        if len(companies) > 1:
-            if request.GET.get('format') == 'json':
-                matches = json.dumps([
-                    {'id': x.vat_id, 'value': x.name} for x in companies
-                ])
-                return HttpResponse(matches, content_type='application/json')
-            else:
+        if request.GET.get('format') == 'json':
+            matches = json.dumps([
+                {'id': x.vat_id, 'value': x.name} for x in companies
+            ])
+            return HttpResponse(matches, content_type='application/json')
+        else:
+            if len(companies) > 1:
                 ctx['companies'] = companies
-        elif len(companies) == 1:
-            return HttpResponseRedirect(companies[0].get_absolute_url())
+            elif len(companies) == 1:
+                return HttpResponseRedirect(companies[0].get_absolute_url())
         return self.render_to_response(ctx)
 
 
@@ -59,11 +59,10 @@ class CompanyView(DetailView):
     model = Company
     slug_field = 'vat_id'
     slug_url_kwarg = 'vat_id'
-    num_months = 12
 
     def get_context_data(self, **kwargs):
         ctx = {
-            'object': kwargs['object']
+            'object': kwargs.get('object')
         }
         if ctx['object']:
             prev_month = calc_last_month(date.today())
@@ -86,3 +85,16 @@ class CompanyView(DetailView):
 
 class EmbedResult(CompanyView):
     template_name = 'shirkers/result.html'
+
+
+class FindEmbedResult(CompanyView):
+    template_name = 'shirkers/result.html'
+    slug_field = 'name'
+    slug_url_kwarg = 'name'
+
+    def get_object(self, queryset=None):
+        try:
+            slug = self.kwargs.get(self.slug_url_kwarg)
+            return Company.objects.filter(name=slug).order_by('-id').first()
+        except:  # Does not exist =>
+            return None
