@@ -12,11 +12,17 @@ $(function () {
 	}
 
 	$("script").each(function (i, el) {
-		var target = $(el).data('shk-target'),
+		var target = $(el).data('podc-target'),
 				url;
 		if (target) {
-			url = getBaseUrl(el.src) + '/embed/';
-			$(target).load(url);
+      url = getBaseUrl(el.src) + '/embed/';
+      if (target === "after") {
+        $.get(url, function (result) {
+          $(el).after(result);
+        });
+      } else {
+        $(target).load(url);
+      }
 		}
 	});
 });

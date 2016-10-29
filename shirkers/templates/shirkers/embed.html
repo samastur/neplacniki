@@ -1,15 +1,15 @@
 {% load staticfiles %}
 {% with BASEURL="http://localhost:8000" %}
-<section class="shk-embed-wrap">
+<section class="podc-embed-wrap">
   <style>
 @import url("{{ BASEURL }}{% static "embed.css" %}");
   </style>
   {% include "shirkers/search.html" %}
-  <div class="shk-result"></div>
+  <div class="podc-result"></div>
   <script>
 $( function() {
-	document.body.classList.add("shirk");
-  $('.shk-search-form').on('submit', function (e) {
+	document.body.classList.add("podc");
+  $('.podc-search-form').on('submit', function (e) {
     e.preventDefault();
     e.stopImmediatePropagation();
 
@@ -22,7 +22,7 @@ $( function() {
 
   function fetchCompany(company_id) {
 		var url = '{{ BASEURL }}/embed/result/' + company_id + '/';
-    $('.shk-result').load(url);
+    $('.podc-result').load(url);
   }
 
   $( "#id_q" ).autocomplete({
