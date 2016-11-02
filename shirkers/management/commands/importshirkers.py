@@ -26,6 +26,9 @@ Already imported entries will not be imported again.
             self.stdout.write(self.style.NOTICE(
                 'Database already contains entries for this date!'))
         else:
+            missed_date = calc_last_month(
+                calc_last_month(metadata['ondate'])
+            )
             for company in shirkers:
                 # First create Company object, if it doesn't exist yet
                 comp, created = Company.objects.get_or_create(
@@ -38,19 +41,7 @@ Already imported entries will not be imported again.
                     })
 
                 # Add missing date for it
-                MissedMonths.objects.create(
-                    company=comp,
-                    missed_date=calc_last_month(metadata['ondate']))
-                '''
-                Company.objects.create(
-                    vat_id=company['id'],
-                    name=company['name'],
-                    street=company['address']['street'],
-                    postcode=company['address']['postcode'],
-                    city=company['address']['city'],
-                    missed_date=metadata['ondate']
-                )
-                '''
+                MissedMonths.objects.create(company=comp, missed_date=missed_date)
             self.stdout.write(self.style.SUCCESS(
                 'Imported {} entries.'.format(len(shirkers))))
 
