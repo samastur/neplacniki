@@ -65,10 +65,12 @@ class IFrameEmbed(TemplateView):
 
 
 def calc_a_year(d):
-    if d.month == 12:
-        return date(d.year, 1, 1)
+    if d.month == 11:
+        return date(d.year - 1, 12, 1)
     else:
-        return date(d.year-1, (d.month-11) % 12, 1)
+        new_month = (d.month - 11) % 12
+        new_year = d.year - 1 + (d.month / 12)
+        return date(new_year, new_month, 1)
 
 
 class CompanyView(DetailView):
