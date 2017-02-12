@@ -61,6 +61,7 @@ def calc_table_data(start_date, end_date, fail_set):
         })
         months = months[12:]
         year += 1
+    years.reverse()  # Reverse order so freshest data (this year) is on top
     return years
 
 
