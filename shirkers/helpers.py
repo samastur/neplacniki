@@ -32,6 +32,38 @@ def calc_last_month(d):
         return date(d.year-1, 12, 1)
 
 
+def next_month(d):
+    if d.month < 12:
+        return date(d.year, d.month + 1, 1)
+    else:
+        return date(d.year + 1, 1, 1)
+
+
+def calc_table_data(start_date, end_date, fail_set):
+    mon = []
+    years = []
+
+    start_year = start_date.year
+    left_pad = [None] * (start_date.month - 1)
+    right_pad = [None] * (12 - end_date.month)
+
+    m = start_date
+    while m <= end_date:
+        mon.append(m not in fail_set)
+        m = next_month(m)
+    months = left_pad + mon + right_pad
+
+    year = start_year
+    while months:
+        years.append({
+            'year': year,
+            'months': months[:12]
+        })
+        months = months[12:]
+        year += 1
+    return years
+
+
 def parse_xml(content):
     try:
         tree = ElementTree.fromstring(content)

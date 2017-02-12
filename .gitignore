@@ -90,3 +90,5 @@ ENV/
 
 # SQLite
 db.sqlite3
+
+data

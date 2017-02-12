@@ -2,11 +2,12 @@ from datetime import date
 import json
 
 from django.conf import settings
+from django.db.models import Max
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import DetailView, TemplateView
 
 from .models import Company, MissedMonths
-from .helpers import calc_last_month
+from .helpers import calc_table_data
 
 
 if hasattr(settings, 'STATIC_BASE_URL'):
@@ -79,19 +80,23 @@ class CompanyView(DetailView):
     slug_field = 'vat_id'
     slug_url_kwarg = 'vat_id'
 
+    def get_missed_months(self, company):
+        months = MissedMonths.objects.filter(
+            company=company).values_list('missed_date')
+        return {m[0] for m in months}
+
     def get_context_data(self, **kwargs):
         ctx = {
             'object': kwargs.get('object'),
         }
         if ctx['object']:
-            prev_month = calc_last_month(date.today())
-            period_start = calc_a_year(prev_month)
-            faults = MissedMonths.objects.filter(
-                company=ctx['object'],
-                missed_date__gte=period_start).order_by(
-                    '-missed_date').only('missed_date')
-            ctx['faults'] = list(faults)
-            ctx['missed_dates'] = [x.missed_date for x in faults]
+            start_date = settings.DATA_START_DATE
+            end_date = MissedMonths.objects.all().aggregate(
+                Max('missed_date'))['missed_date__max']
+            missed_months = self.get_missed_months(ctx['object'])
+            table_data = calc_table_data(start_date, end_date, missed_months)
+            ctx['table_data'] = table_data
+            ctx['missed_dates'] = len(missed_months) > 0
         return ctx
 
     def get_object(self, queryset=None):

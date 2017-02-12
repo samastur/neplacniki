@@ -114,9 +114,9 @@ LANGUAGE_CODE = 'sl-si'
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
+USE_I18N = False
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
@@ -130,5 +130,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
+from datetime import date
+DATA_START_DATE = date(2016, 5, 1)  # HAS TO EXIST AND BE A DATE OBJECT
 
 from local_settings import *

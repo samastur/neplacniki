@@ -6,11 +6,9 @@
   </p>
   <p>Podjetje prispevkov iz plače ni obračunalo v roku v naslednjih mesecih:</p>
   {% if missed_dates %}
-  <ul>
-  {% for missed in missed_dates %}
-  <li>{{ missed|date:"E Y" }}</li>
-  {% endfor %}
-  </ul>
+    {% if table_data %}
+      {% include "shirkers/table.html" %}
+    {% endif %}
   {% else %}
   <p>Podjetje v zadnjem letu ni bilo na seznamu nepredlagateljev obračunov.</p>
   {% endif %}

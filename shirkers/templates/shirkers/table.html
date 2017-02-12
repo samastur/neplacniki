@@ -1,0 +1,24 @@
+<table class="podc-table">
+  <tr class="months">
+    <th></th>
+    <th><span data-month="1">januar</span></th>
+    <th><span data-month="2">februar</span></th>
+    <th><span data-month="3">marec</span></th>
+    <th><span data-month="4">april</span></th>
+    <th><span data-month="5">maj</span></th>
+    <th><span data-month="6">junij</span></th>
+    <th><span data-month="7">julij</span></th>
+    <th><span data-month="8">avgust</span></th>
+    <th><span data-month="9">september</span></th>
+    <th><span data-month="10">oktober</span></th>
+    <th><span data-month="11">november</span></th>
+    <th><span data-month="12">december</span></th>
+  </tr>
+  {% for year in table_data %}
+  <tr class="months-values">
+    <th>{{ year.year }}</th>
+    {% for month in year.months %}<td class="{{ month|yesno:'ok,not-ok,' }}">{{ month|yesno:"✓,✗," }}</td>
+    {% endfor %}
+  </tr>
+  {% endfor %}
+</table>

@@ -51,3 +51,68 @@
 .podc-embed-wrap .podc-result {
 	min-height: 5em;
 }
+
+/* Results table */
+.podc-table {
+	width: 100%;
+	text-align: center;
+	border-spacing: 0;
+}
+.podc-table th,
+.podc-table td {
+	padding: 3px 5px;
+	font-weight: normal;
+}
+.podc-table .months th {
+	height: 5em;
+	position: relative;
+	text-align: left;
+}
+.podc-table th:nth-child(1) {
+	width: 3em;
+	text-align: left;
+}
+.podc-table .months span {
+	position: absolute;
+	display: block;
+	left: 0;
+	bottom: 0;
+	transform-origin: 10% -10% 0;
+	transform: rotate(-60deg);
+}
+@media (max-device-width: 600px) {
+	.podc-table .months th {
+		min-width: 7%;
+		text-align: center;
+	}
+	.podc-table .months span {
+		visibility: hidden;
+		display: block;
+		margin-left: calc(50% - .5em);
+		transform-origin: 10% -10% 0;
+		transform: rotate(0);
+		width: 1em;
+	}
+	.podc-table .months span::before {
+		visibility: visible;
+		content: attr(data-month);
+	}
+}
+
+.podc-table .months-values th,
+.podc-table td {
+	border-right: 1px solid #555;
+	border-top: 1px solid #555;
+}
+.podc-table .months-values:last-child th,
+.podc-table .months-values:last-child td {
+	border-bottom: 1px solid #555;
+}
+.podc-table .ok {
+	background-color: #d0e7d0;
+	color: #0a4a0a;
+}
+.podc-table .not-ok {
+	background-color: #e0c9c9;
+	color: #692121;
+}
