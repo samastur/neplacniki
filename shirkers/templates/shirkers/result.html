@@ -4,7 +4,9 @@
   <p>
     {{ object.street }}, {{ object.postcode}} {{ object.city }}
   </p>
-  <p>Podjetje prispevkov iz plače ni obračunalo v roku v naslednjih mesecih:</p>
+  <p>
+	Podjetje prispevkov iz plačeni obračunalo v roku v s križci označenih mesecih:
+	</p>
   {% if missed_dates %}
     {% if table_data %}
       {% include "shirkers/table.html" %}

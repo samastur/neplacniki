@@ -65,11 +65,12 @@
 }
 .podc-table .months th {
 	height: 5em;
+	overflow: hidden;
 	position: relative;
 	text-align: left;
 }
 .podc-table th:nth-child(1) {
-	width: 3em;
+	width: 2em;
 	text-align: left;
 }
 .podc-table .months span {
@@ -77,10 +78,10 @@
 	display: block;
 	left: 0;
 	bottom: 0;
-	transform-origin: 10% -10% 0;
-	transform: rotate(-60deg);
+	transform-origin: 10% 10% 0;
+	transform: rotate(-75deg);
 }
-@media (max-device-width: 600px) {
+@media only screen and (max-width: 600px) {
 	.podc-table .months th {
 		min-width: 7%;
 		text-align: center;
@@ -89,7 +90,7 @@
 		visibility: hidden;
 		display: block;
 		margin-left: calc(50% - .5em);
-		transform-origin: 10% -10% 0;
+		transform-origin: 10% 10% 0;
 		transform: rotate(0);
 		width: 1em;
 	}
@@ -109,10 +110,10 @@
 	border-bottom: 1px solid #555;
 }
 .podc-table .ok {
-	background-color: #d0e7d0;
-	color: #0a4a0a;
+	background-color: #dcffdc;
+	color: #005c00;
 }
 .podc-table .not-ok {
-	background-color: #e0c9c9;
-	color: #692121;
+	background-color: #ffdada;
+	color: #7B0F0F;
 }
