@@ -17,7 +17,7 @@
   {% for year in table_data %}
   <tr class="months-values">
     <th>{{ year.year }}</th>
-    {% for month in year.months %}<td class="{{ month|yesno:'ok,not-ok,' }}">{{ month|yesno:"✓,✗," }}</td>
+    {% for month in year.months %}<td class="{{ month|yesno:',not-ok,' }}">{{ month|yesno:"-,✗, " }}</td>
     {% endfor %}
   </tr>
   {% endfor %}
