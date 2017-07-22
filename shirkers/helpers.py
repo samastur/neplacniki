@@ -113,8 +113,16 @@ def parse(root):
 def parse_address(address):
     street, zipcity = address.rsplit(', ', 1)
     zipcode, city = zipcity.split(' ', 1)
-    return {
-        'street': street,
-        'postcode': int(zipcode),
-        'city': city
-    }
+    try:
+        address = {
+            'street': street,
+            'postcode': int(zipcode),
+            'city': city
+        }
+    except ValueError:  # Likely address not in Slovenia
+        address = {
+            'street': street,
+            'postcode': 0,
+            'city': zipcity
+        }
+    return address
