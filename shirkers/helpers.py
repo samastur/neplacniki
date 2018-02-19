@@ -119,7 +119,8 @@ def parse_address(address):
             'postcode': int(zipcode),
             'city': city
         }
-    except ValueError:  # Likely address not in Slovenia
+        assert int(zipcode) < 10000
+    except (ValueError, AssertionError):  # Likely address not in Slovenia
         address = {
             'street': street,
             'postcode': 0,
